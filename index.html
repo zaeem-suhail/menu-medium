@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Medium - Menu</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            color: #FFFFFF;
+            line-height: 1.6;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+            position: relative;
+        }
+
+        .logo-container {
+            width: 105px;
+            height: 105px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+
+        .logo-image {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            color: white;
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 8px 40px rgba(255, 107, 107, 0.4);
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            border-radius: 0 0 50px 50px;
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .logo-placeholder {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            border: 3px dashed rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .cafe-name {
+            font-family: 'Caveat', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+            letter-spacing: 3px;
+        }
+        
+        .tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 1.4rem;
+            opacity: 0.95;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        
+        .menu-subtitle {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E8E 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .menu-content {
+            padding: 0 15px 40px;
+            max-width: 100%;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #1f1f1f 0%, #2a2a2a 100%);
+            border-radius: 25px;
+            padding: 30px 25px;
+            box-shadow: 
+                0 10px 40px rgba(0,0,0,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #FF6B6B, #FF8E8E, #FFB5B5, #FF8E8E, #FF6B6B);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .section-title {
+            font-family: 'Caveat', cursive;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #FF6B6B;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.2;
+        }
+        
+        .section-subtitle {
+            font-style: italic;
+            color: #CCCCCC;
+            margin-bottom: 25px;
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        
+        .menu-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #FF6B6B;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .menu-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 107, 107, 0.1);
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(255, 107, 107, 0.2);
+        }
+        
+        .item-name {
+            font-weight: 700;
+            color: #FFFFFF;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .item-description {
+            color: #E0E0E0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-style: italic;
+            font-weight: 400;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            margin-top: 40px;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #E85A5A 100%);
+            border-radius: 50px 50px 0 0;
+            box-shadow: 0 -5px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        .footer-tagline {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: white;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .footer-text {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 400;
+            font-style: italic;
+        }
+        
+        /* Mobile specific optimizations */
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 15px 25px;
+            }
+            
+            .cafe-name {
+                font-size: 3rem;
+                letter-spacing: 2px;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .logo-placeholder {
+                width: 80px;
+                height: 80px;
+                font-size: 0.75rem;
+            }
+            
+            .section {
+                margin-bottom: 25px;
+                padding: 25px 20px;
+                border-radius: 20px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .menu-item {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+            
+            .item-name {
+                font-size: 1.1rem;
+            }
+            
+            .item-description {
+                font-size: 0.9rem;
+            }
+            
+            .menu-content {
+                padding: 0 10px 30px;
+            }
+        }
+        
+        /* Larger phone screens */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .container {
+                max-width: 100%;
+            }
+            
+            .menu-content {
+                padding: 0 20px 40px;
+            }
+            
+            .section {
+                max-width: 600px;
+                margin: 0 auto 30px;
+            }
+        }
+        
+        /* Subtle animations */
+        .section {
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+        .section:nth-child(9) { animation-delay: 0.9s; }
+        .section:nth-child(10) { animation-delay: 1s; }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #FF6B6B, #E85A5A);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #E85A5A, #FF6B6B);
+        }
+        
+        /* Glowing effect for better visibility */
+        .glow {
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Ensure full width on all devices */
+        body, html {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="themediumlogo.png" alt="The Medium Logo" class="logo-image">
+            </div>
+            <h1 class="cafe-name"></h1>
+            
+        </div>
+        
+        <div class="menu-subtitle">
+            "Bean There, Drank That" Edition
+        </div>
+        
+        <div class="menu-content">
+            <div class="section">
+                <h2 class="section-title">Hot Mess Express</h2>
+                <p class="section-subtitle">Hot drinks for your hot drama.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Double Shot Espresso</div>
+                    <div class="item-description">Two shots. No milk. No mercy.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Affogato</div>
+                    <div class="item-description">Espresso crash-landing into ice cream. A sweet meltdown.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Americano</div>
+                    <div class="item-description">Espresso + water. Still stronger than your ex.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Cortado</div>
+                    <div class="item-description">Balanced, bold, and not here to explain itself.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Flat White</div>
+                    <div class="item-description">A latte that's been through therapy.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Hot Chocolate</div>
+                    <div class="item-description">No caffeine. Just cozy flashbacks and sugar.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Sweet, But Make It Caffeine</h2>
+                <p class="section-subtitle">Dessert meets espresso. Chaos ensues.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Spanish Latte</div>
+                    <div class="item-description">Condensed milk + espresso = sweet danger.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Caramel Macchiato</div>
+                    <div class="item-description">Like a caramel soap opera. Layered and dramatic.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Tiramisu Latte</div>
+                    <div class="item-description">Dessert in a mug. Your sweet tooth's final boss.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Creme Brulee Latte</div>
+                    <div class="item-description">Fancy, creamy, and slightly burnt on purpose.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Roasted Hazelnut Latte</div>
+                    <div class="item-description">Nutty. Smooth. Probably knows your star sign.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Creamy Pistachio Latte</div>
+                    <div class="item-description">Green, rich, and slightly unhinged.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Honey Latte</div>
+                    <div class="item-description">Sticky, sweet, and buzzing with ideas.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Slow Bar, Fast Feels</h2>
+                <p class="section-subtitle">Hand-poured and high-maintenance.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">V60</div>
+                    <div class="item-description">Manual pour-over with commitment issues.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Cold Brew</div>
+                    <div class="item-description">12-hour steep. Zero chill.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Chemex</div>
+                    <div class="item-description">Coffee brewed like a science experiment. Looks smart.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Cold Brews Before Dudes</h2>
+                <p class="section-subtitle">Cold. Caffeinated. Slightly chaotic.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Honey Americano</div>
+                    <div class="item-description">Cool, sweet, and full of sass.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Shaken Espresso</div>
+                    <div class="item-description">Espresso shaken like your sleep schedule.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Brown Sugar Shaken Espresso</div>
+                    <div class="item-description">Brown sugar, milk, and emotional depth.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Caramel Macchiato</div>
+                    <div class="item-description">Layers of cold drama and caramel trust issues.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Spanish Latte</div>
+                    <div class="item-description">Sweet and smooth with main character energy.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Tiramisu Latte with Cold Foam</div>
+                    <div class="item-description">It's giving dessert diva energy. Layers, drama, and a cloud of cold foam like it just woke up late for a Vogue shoot.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Creme Brulee Latte with Cold Foam</div>
+                    <div class="item-description">Sweet, iced, and ready to torch your taste buds (gently). Cold foam on top like a silk pillow for your caffeine dreams.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Shaken Affogato Espresso</div>
+                    <div class="item-description">Affogato, but unhinged. Espresso, ice, shake-shake-shake—it's a dessert and a workout.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Frap Me Baby One More Time</h2>
+                <p class="section-subtitle">Blended like your emotions.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Caramel Frappe</div>
+                    <div class="item-description">Caramel tornado in a cup.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Coffee Frappe</div>
+                    <div class="item-description">A smoothie with serious caffeine goals.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Matcha Creme Frappe</div>
+                    <div class="item-description">Green, creamy, and probably judging you.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Hazelnut Frappe</div>
+                    <div class="item-description">Nutty and dependable. Like a caffeinated bestie.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Mocha Frappe</div>
+                    <div class="item-description">Chocolate + coffee = enemies to lovers.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Not Coffee, Still Unhinged</h2>
+                
+                <div class="menu-item">
+                    <div class="item-name">The One Mojito</div>
+                    <div class="item-description">Mint + lemon = magic.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Matcha, Please</h2>
+                <p class="section-subtitle">Green tea with god complex.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Matcha Latte</div>
+                    <div class="item-description">Earthy, foamy, and suspiciously healthy.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Matcha Latte</div>
+                    <div class="item-description">Cooler than your iced coffee habit.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Vanilla Matcha Latte</div>
+                    <div class="item-description">Sweet, chill, and green like envy.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Iced Raspberry Matcha Latte</div>
+                    <div class="item-description">Berry bold. Berry pretty.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Chai Harder</h2>
+                <p class="section-subtitle">For the desi in distress.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Dum Chai</div>
+                    <div class="item-description">Slow-brewed with full desi drama and clove-based threats.</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Tea Swipe Right</h2>
+                <p class="section-subtitle">These brews are cute and emotionally available.</p>
+                
+                <div class="menu-item">
+                    <div class="item-name">Velvet Earl</div>
+                    <div class="item-description">Earl Grey with vanilla. Fancy and opinionated.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Sakura</div>
+                    <div class="item-description">Sencha green tea kissed by cherry blossoms.</div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-name">Lavender Laze</div>
+                    <div class="item-description">Chamomile + lavender = bedtime in a cup</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p class="footer-tagline"><p class="tagline">caffeine. crumbs. chords. community</p></p>
+        </div>
+    </div>
+</body>
+</html>
